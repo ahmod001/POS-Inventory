@@ -1,18 +1,17 @@
 <?php
 
+use App\Http\Controllers\userController;
+use App\Http\Middleware\tokenVerficationMiddleware;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
-Route::get('/', function () {
-    return view('welcome');
+Route::controller(userController::class)->group(function () {
+    Route::post('/user-register', 'userRegistration');
+    Route::post('/user-login', 'userLogin');
+    Route::post('/send-otp', 'sendOTPCode');
+    Route::post('/verify-otp', 'verifyOTPCode');
+
+    // Verify Token
+    Route::post('/reset-password', 'resetPassword')
+        ->middleware(tokenVerficationMiddleware::class);
 });
