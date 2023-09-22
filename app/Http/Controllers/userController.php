@@ -11,19 +11,45 @@ use Mail;
 
 class userController extends Controller
 {
+    function loginPage()
+    {
+        return view('pages.auth.login-page');
+    }
+
+    function registerPage()
+    {
+        return view('pages.auth.registration-page');
+    }
+
+    function sendOtpPage()
+    {
+        return view('pages.auth.send-otp-page');
+    }
+
+    function verifyOtpPage()
+    {
+        return view('pages.auth.verify-otp-page');
+    }
+
+    function resetPasswordPage()
+    {
+        return view('pages.auth.reset-password-page');
+    }
+
+
     function userRegistration(Request $request)
     {
         try {
             User::create($request->input());
             return response()->json([
                 "status" => "success",
-                "message" => "user registration successful"
+                "message" => "Registration successful"
             ], 201);
         } catch (Exception $e) {
             return response()->json([
                 "status" => "failed",
-                "message" => "user registration failed"
-            ], 500);
+                "message" => "Registration failed"
+            ], 400);
         }
 
     }
@@ -39,9 +65,9 @@ class userController extends Controller
 
             return response()->json([
                 "status" => "success",
-                "message" => "login successful",
+                "message" => "Login successful",
                 "token" => $token
-            ], 200);
+            ], 200)->cookie('token', $token, 60 * 24 * 30); // expire in 30 days
         } else {
             return response()->json([
                 "status" => "failed",
@@ -52,7 +78,6 @@ class userController extends Controller
 
     function sendOTPCode(Request $request)
     {
-
         $email = $request->input('email');
         $count = User::where('email', '=', $email)->count();
 
@@ -109,7 +134,7 @@ class userController extends Controller
                 "status" => "success",
                 "message" => "otp verification successful",
                 "token" => $token
-            ], 200);
+            ], 200)->cookie('token', $token, 60 * 24 * 30); // expire in 30 days
         } else {
             return response()->json([
                 "status" => "failed",
