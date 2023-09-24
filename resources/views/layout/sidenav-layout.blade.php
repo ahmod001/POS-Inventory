@@ -11,9 +11,8 @@
     <link href="{{ asset('css/fontawesome.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/toastify.min.css') }}" rel="stylesheet" />
-
     <link href="{{ asset('css/jquery.dataTables.min.css') }}" rel="stylesheet" />
-
+    <script src="{{ asset('js/config.js') }}"></script>
     <script src="{{ asset('js/axios.min.js') }}"></script>
 
 </head>
@@ -45,10 +44,10 @@
                             <h6>User Name</h6>
                             <hr class="user-dropdown-divider  p-0" />
                         </div>
-                        <a href="{{ url('/profileDetails') }}" class="side-bar-item">
+                        <a href="{{ url('/user-profile') }}" class="side-bar-item">
                             <span class="side-bar-item-caption">Profile</span>
                         </a>
-                        <a href="{{ url('/logout') }}" class="side-bar-item">
+                        <a href="{{url('/user-logout')}}" class="side-bar-item">
                             <span class="side-bar-item-caption">Logout</span>
                         </a>
                     </div>
@@ -64,19 +63,19 @@
             <span class="side-bar-item-caption text-lg">Dashboard</span>
         </a>
 
-        <a href="{{ url('/customerPage') }}" class="side-bar-item">
+        <a href="{{ url('/customers') }}" class="side-bar-item">
             <i class="fa fa-chevron-circle-right  text-dark"></i>
-            <span class="side-bar-item-caption text-lg">Customer</span>
+            <span class="side-bar-item-caption text-lg">Customers</span>
         </a>
 
-        <a href="{{ url('/categoryPage') }}" class="side-bar-item">
+        <a href="{{ url('/categories') }}" class="side-bar-item">
             <i class="fa fa-chevron-circle-right  text-dark"></i>
-            <span class="side-bar-item-caption text-lg">Category</span>
+            <span class="side-bar-item-caption text-lg">Categories</span>
         </a>
 
-        <a href="{{ url('/productPage') }}" class="side-bar-item">
+        <a href="{{ url('/products') }}" class="side-bar-item">
             <i class="fa fa-chevron-circle-right  text-dark"></i>
-            <span class="side-bar-item-caption text-lg">Product</span>
+            <span class="side-bar-item-caption text-lg">Products</span>
         </a>
 
 
@@ -119,7 +118,7 @@
     <script src="{{ asset('js/bootstrap.bundle.js') }}"></script>
     <script src="{{ asset('js/jquery-3.7.0.min.js') }}"></script>
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('js/config.js') }}"></script>
+    <script src="{{ asset('js/form-validation.js') }}"></script>
     <script src="{{ asset('js/toastify-js.js') }}"></script>
 </body>
 

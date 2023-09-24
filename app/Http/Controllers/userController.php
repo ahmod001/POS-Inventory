@@ -36,7 +36,6 @@ class userController extends Controller
         return view('pages.auth.reset-password-page');
     }
 
-
     function userRegistration(Request $request)
     {
         try {
@@ -58,10 +57,10 @@ class userController extends Controller
     {
         $count = User::where('email', '=', $request->input('email'))
             ->where('password', '=', $request->input('password'))
-            ->count();
+            ->select('id')->first();
 
-        if ($count === 1) {
-            $token = JWTToken::createToken($request->input('email'), 'login');
+        if ($count !== null) {
+            $token = JWTToken::createToken($request->input('email'), $count->id, 'login');
 
             return response()->json([
                 "status" => "success",
@@ -74,6 +73,12 @@ class userController extends Controller
                 "message" => "unauthorized"
             ], 401);
         }
+    }
+
+    function userLogOut(Request $request)
+    {
+        return redirect('/login')
+            ->cookie('token', '', -1); //Delete Cookie
     }
 
     function sendOTPCode(Request $request)
@@ -123,7 +128,7 @@ class userController extends Controller
 
         if ($count === 1) {
             // Generate JWT 
-            $token = JWTToken::createToken($email, 'resetPassword');
+            $token = JWTToken::createToken($email, 0, 'resetPassword');
 
             // Reset easting OTP from Database
             User::where('email', '=', $email)->update([
@@ -162,5 +167,36 @@ class userController extends Controller
                 "message" => "something went wrong"
             ], 500);
         }
+    }
+    function userUpdate(Request $request)
+    {
+        try {
+            $email = $request->header('email');
+            User::where('email', '=', $email)->update([
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
+                'mobile' => $request->input('mobile'),
+                'password' => $request->input('password')
+            ]);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Profile update successful'
+            ], 200);
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Profile update failed'
+            ], 400);
+        }
+    }
+    function userProfile(Request $request)
+    {
+        $email = $request->header('email');
+        $user = User::where('email', '=', $email)->first();
+        return response()->json([
+            'status' => 'success',
+            'message' => '',
+            "data" => $user
+        ], 200);
     }
 }
