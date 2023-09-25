@@ -25,7 +25,6 @@ class customerController extends Controller
         ], 200);
     }
 
-
     function createCustomer(Request $request)
     {
         try {
@@ -110,7 +109,7 @@ class customerController extends Controller
 
     function customerById(Request $request)
     {
-        $customerId = $request->input('id');
+        $customerId = $request->id;
         $userId = $request->header('userId');
 
         return Customer::where('user_id', '=', $userId)->where('id', '=', $customerId)->first();

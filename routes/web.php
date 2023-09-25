@@ -3,6 +3,7 @@
 use App\Http\Controllers\categoryController;
 use App\Http\Controllers\customerController;
 use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\productController;
 use App\Http\Controllers\userController;
 use App\Http\Middleware\tokenVerficationMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -57,4 +58,13 @@ Route::controller(customerController::class)->group(function () {
     Route::post('/delete-customer', 'deleteCustomer')->middleware(tokenVerficationMiddleware::class);
     Route::get('/customer-list', 'customerList')->middleware(tokenVerficationMiddleware::class);
     Route::get('/customers/{id}', 'customerById')->middleware(tokenVerficationMiddleware::class);
+});
+
+// Product
+Route::controller(productController::class)->group(function () {
+    Route::post('/create-product', 'createProduct')->middleware(tokenVerficationMiddleware::class);
+    Route::post('/update-product', 'updateProduct')->middleware(tokenVerficationMiddleware::class);
+    Route::post('/delete-product', 'deleteProduct')->middleware(tokenVerficationMiddleware::class);
+    Route::get('/product-list', 'ProductList')->middleware(tokenVerficationMiddleware::class);
+    Route::get('/products/{id}', 'productById')->middleware(tokenVerficationMiddleware::class);
 });
