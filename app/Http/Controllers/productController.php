@@ -9,7 +9,12 @@ use Illuminate\Http\Request;
 
 class productController extends Controller
 {
-    function ProductList(Request $request)
+    function productsPage()
+    {
+        return view('pages.dashboard.product-page');
+    }
+
+    function productList(Request $request)
     {
         $userId = $request->header('userId');
         $products = Product::where('user_id', '=', $userId)->get();
@@ -75,7 +80,7 @@ class productController extends Controller
             $product = Product::where('id', '=', $productId)
                 ->where('user_id', '=', $userId);
 
-            if ($product->count()) {
+            if ($product->count() === 1) {
                 $product->delete();
                 File::delete($request->input('img_url'));
 
@@ -102,7 +107,7 @@ class productController extends Controller
             $product = Product::where('id', '=', $request->input('id'))
                 ->where('user_id', '=', $userId);
 
-            if ($product->count()) {
+            if ($product->count()===1) {
 
                 if ($request->hasFile('img')) {
 
@@ -129,7 +134,7 @@ class productController extends Controller
 
                 } else {
 
-                   // Update Database
+                    // Update Database
                     $product->update([
                         "name" => $request->input('name'),
                         "price" => $request->input('price'),
@@ -145,11 +150,10 @@ class productController extends Controller
             throw new Exception("Product not found", 404);
 
         } catch (Exception $e) {
-            // return response()->json([
-            //     "status" => "failed",
-            //     "message" => "Updating product failed"
-            // ], 400);
-            return $e->getMessage();
+            return response()->json([
+                "status" => "failed",
+                "message" => "Updating product failed"
+            ], 400);
         }
     }
 }

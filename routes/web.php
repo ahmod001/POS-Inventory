@@ -18,15 +18,22 @@ Route::controller(userController::class)->group(function () {
     Route::get('/reset-password', 'resetPasswordPage')->middleware(tokenVerficationMiddleware::class);
 });
 
-// After Authentication
+//--- After Authentication
+// Dashboard
 Route::controller(dashboardController::class)->group(function () {
     Route::get('/dashboard', 'dashboardPage')->middleware(tokenVerficationMiddleware::class);
     Route::get('/user-profile', 'userProfilePage')->middleware(tokenVerficationMiddleware::class);
 });
-
+// Category
 Route::controller(categoryController::class)->group(function () {
     Route::get('/categories', 'categoriesPage')->middleware(tokenVerficationMiddleware::class);
 });
+
+//Product 
+Route::controller(productController::class)->group(function () {
+    Route::get('/products', 'productsPage')->middleware(tokenVerficationMiddleware::class);
+});
+
 
 //------------- API ROUTES ------------//
 // User
@@ -65,6 +72,6 @@ Route::controller(productController::class)->group(function () {
     Route::post('/create-product', 'createProduct')->middleware(tokenVerficationMiddleware::class);
     Route::post('/update-product', 'updateProduct')->middleware(tokenVerficationMiddleware::class);
     Route::post('/delete-product', 'deleteProduct')->middleware(tokenVerficationMiddleware::class);
-    Route::get('/product-list', 'ProductList')->middleware(tokenVerficationMiddleware::class);
+    Route::get('/product-list', 'productList')->middleware(tokenVerficationMiddleware::class);
     Route::get('/products/{id}', 'productById')->middleware(tokenVerficationMiddleware::class);
 });
