@@ -30,7 +30,7 @@
                                 <br />
 
                                 <label class="form-label">Image</label>
-                                <input accept="image/jpeg, image/png, image/webp" oninput="handleImgPreviw(event)"
+                                <input accept="image/jpeg,image/jpg, image/png, image/webp" oninput="handleImgPreviw(event)"
                                     type="file" class="form-control" id="productImg">
                             </div>
                         </div>
