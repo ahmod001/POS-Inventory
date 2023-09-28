@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class customerController extends Controller
 {
-    function customerPage()
+    function customersPage()
     {
         return view('pages.dashboard.customer-page');
     }

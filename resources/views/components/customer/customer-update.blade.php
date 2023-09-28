@@ -15,15 +15,16 @@
                                 <input type="text" class="form-control" id="customerEmailUpdate">
                                 <label class="form-label">Customer Mobile *</label>
                                 <input type="text" class="form-control" id="customerMobileUpdate">
-                                <input type="text" class="d-none"  id="updateID">
+                                <input type="text" class="d-none" id="updateID">
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button id="update-modal-close" class="btn btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close">Close</button>
-                <button onclick="Update()" id="update-btn" class="btn btn-sm  btn-success" >Update</button>
+                <button id="update-modal-close" class="btn btn-sm btn-danger" data-bs-dismiss="modal"
+                    aria-label="Close">Close</button>
+                <button onclick="Update()" id="update-btn" class="btn btn-sm  btn-success">Update</button>
             </div>
         </div>
     </div>
@@ -31,64 +32,59 @@
 
 
 <script>
-
-
-
-    async function FillUpUpdateForm(id){
-        document.getElementById('updateID').value=id;
+    async function FillUpUpdateForm(id) {
+        document.getElementById('updateID').value = id;
         showLoader();
-        let res= await axios.post("/customer-by-id",{id:id})
+        const res = await axios.get(`/customers/${id}`)
         hideLoader();
-        document.getElementById('customerNameUpdate').value=res.data['name'];
-        document.getElementById('customerEmailUpdate').value=res.data['email'];
-        document.getElementById('customerMobileUpdate').value=res.data['mobile'];
+        document.getElementById('customerNameUpdate').value = res.data['name'];
+        document.getElementById('customerEmailUpdate').value = res.data['email'];
+        document.getElementById('customerMobileUpdate').value = res.data['mobile'];
     }
 
 
 
     async function Update() {
 
-       let customerName = document.getElementById('customerNameUpdate').value;
-        let customerEmail = document.getElementById('customerEmailUpdate').value;
-        let customerMobile = document.getElementById('customerMobileUpdate').value;
-        let updateID = document.getElementById('updateID').value;
-        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const customerName = document.getElementById('customerNameUpdate').value;
+        const customerEmail = document.getElementById('customerEmailUpdate').value;
+        const customerMobile = document.getElementById('customerMobileUpdate').value;
+        const updateID = document.getElementById('updateID').value;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 
         if (customerName.length === 0) {
-           errorToast("Customer Name Required !")
-         }
-        else if(customerEmail.length===0){
+            errorToast("Customer Name Required !")
+        } else if (customerEmail.length === 0) {
             errorToast("Customer Email Required !")
-        }
-        else if(!emailRegex.test(customerEmail)){
-             errorToast('Enter Valid Email');
-     }
-       else if(customerMobile.length===0){
-             errorToast("Customer Mobile Required !")
-         }
-         else {
+        } else if (!emailRegex.test(customerEmail)) {
+            errorToast('Enter Valid Email');
+        } else if (customerMobile.length === 0) {
+            errorToast("Customer Mobile Required !")
+        } else {
 
-         document.getElementById('update-modal-close').click();
+            document.getElementById('update-modal-close').click();
 
-         showLoader();
+            showLoader();
 
-          let res = await axios.post("/update-customer",{name:customerName,email:customerEmail,mobile:customerMobile,id:updateID})
+            try {
+                const res = await axios.post("/update-customer", {
+                    name: customerName,
+                    email: customerEmail,
+                    mobile: customerMobile,
+                    id: updateID
+                })
 
-           hideLoader();
+                hideLoader();
+                successToast(res.data['message']);
+                document.getElementById("update-form").reset();
 
-            if(res.status===200 && res.data['status']==='success'){
-
-              successToast(res.data['message']);
-              document.getElementById("update-form").reset();
-
-              await  getCustomerList();
-
-           }
-           else{
-               errorToast(res.data['message']);
+                await getCustomerList();
+            } catch (error) {
+                errorToast('Customer updating failed');
             }
-       }
-     }
 
+
+        }
+    }
 </script>

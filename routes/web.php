@@ -35,6 +35,12 @@ Route::controller(productController::class)->group(function () {
 });
 
 
+//Customer
+Route::controller(customerController::class)->group(function () {
+    Route::get('/customers', 'customersPage')->middleware(tokenVerficationMiddleware::class);
+});
+
+
 //------------- API ROUTES ------------//
 // User
 Route::controller(userController::class)->group(function () {

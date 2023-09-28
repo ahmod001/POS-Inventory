@@ -10,7 +10,6 @@
                         <div class="row">
                             <div class="col-12 p-1">
 
-
                                 <label class="form-label">Category</label>
                                 <select type="text" class="form-control form-select" id="productCategoryUpdate">
                                     <option value="">Select Category</option>
