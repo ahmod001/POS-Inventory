@@ -58,7 +58,7 @@
 
 
     <div id="sideNavRef" class="side-nav-open">
-        <a href="{{ url('/dashboard') }}" class="side-bar-item">
+        <a href="{{ url('/') }}" class="side-bar-item">
             <i class="fa fa-chevron-circle-right  text-dark"></i>
             <span class="side-bar-item-caption text-lg">Dashboard</span>
         </a>

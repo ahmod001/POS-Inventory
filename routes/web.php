@@ -3,6 +3,7 @@
 use App\Http\Controllers\categoryController;
 use App\Http\Controllers\customerController;
 use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\invoiceController;
 use App\Http\Controllers\productController;
 use App\Http\Controllers\userController;
 use App\Http\Middleware\tokenVerficationMiddleware;
@@ -21,7 +22,7 @@ Route::controller(userController::class)->group(function () {
 //--- After Authentication
 // Dashboard
 Route::controller(dashboardController::class)->group(function () {
-    Route::get('/dashboard', 'dashboardPage')->middleware(tokenVerficationMiddleware::class);
+    Route::get('/', 'dashboardPage')->middleware(tokenVerficationMiddleware::class);
     Route::get('/user-profile', 'userProfilePage')->middleware(tokenVerficationMiddleware::class);
 });
 // Category
@@ -41,7 +42,24 @@ Route::controller(customerController::class)->group(function () {
 });
 
 
+// Invoice
+Route::controller(invoiceController::class)->group(function () {
+    Route::post('/create-invoice', 'createInvoice')->middleware(tokenVerficationMiddleware::class);
+    Route::get('/invoice-list', 'invoiceList')->middleware(tokenVerficationMiddleware::class);
+    Route::post('/invoice-details', 'invoiceDetails')->middleware(tokenVerficationMiddleware::class);
+    Route::post('/delete-invoice', 'deleteInvoice')->middleware(tokenVerficationMiddleware::class);
+});
+
 //------------- API ROUTES ------------//
+
+// Dashboard
+Route::controller(dashboardController::class)->group(function () {
+    Route::get('/total-customer', 'totalCustomer')->middleware(tokenVerficationMiddleware::class);
+    Route::get('/total-product', 'totalProduct')->middleware(tokenVerficationMiddleware::class);
+    Route::get('/total-category', 'totalCategory')->middleware(tokenVerficationMiddleware::class);
+    Route::get('/total-sale', 'totalSale')->middleware(tokenVerficationMiddleware::class);
+});
+
 // User
 Route::controller(userController::class)->group(function () {
     Route::post('/user-register', 'userRegistration');

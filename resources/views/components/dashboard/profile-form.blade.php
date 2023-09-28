@@ -32,7 +32,8 @@
                         </div>
                         <div class="row m-0 p-0">
                             <div class="col-md-4 p-2">
-                                <button onclick="handleUpdate()" class="btn mt-3 w-100  btn-primary">Update Profile</button>
+                                <button onclick="handleUpdate()" class="btn mt-3 w-100  btn-primary">Update
+                                    Profile</button>
                             </div>
                         </div>
                     </div>
@@ -55,17 +56,19 @@
         try {
             const res = await axios.get('/user-profile-details');
             const user = res['data']['data'];
+
             email.value = user['email'];
             firstName.value = user['first_name'];
             lastName.value = user['last_name'];
             mobile.value = user['mobile'];
             password.value = user['password'];
+
             hideLoader();
         } catch (error) {
             hideLoader();
             errorToast('Something went wrong');
             setTimeout(() => {
-                window.location.href = '/dashboard';
+                window.location.href = document.referrer
             }, 1000);
 
         }

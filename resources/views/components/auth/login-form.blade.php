@@ -44,7 +44,7 @@
 
                 // Redirect to Dashboard
                 setTimeout(() => {
-                    window.location.href = '/dashboard'
+                    window.location.href = '/'
                 }, 1000)
             } catch (error) {
                 errorToast('The provided email or password is invalid');
