@@ -14,6 +14,11 @@ class invoiceController extends Controller
 {
     function invoicePage()
     {
+        return view('pages.dashboard.sale-page');
+    }
+
+    function invoiceListPage()
+    {
         return view('pages.dashboard.invoice-page');
     }
 
@@ -123,6 +128,7 @@ class invoiceController extends Controller
     function deleteInvoice(Request $request)
     {
         $userId = $request->header('userId');
+
         DB::beginTransaction();
         try {
             InvoiceProduct::where('invoice_id', $request->input('invoice_id'))
@@ -136,6 +142,7 @@ class invoiceController extends Controller
                 "status" => "successful",
                 "message" => "Invoice deleted successfully"
             ], 200);
+
         } catch (Exception $e) {
             return response()->json([
                 "status" => "failed",

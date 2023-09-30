@@ -5,6 +5,7 @@ use App\Http\Controllers\customerController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\invoiceController;
 use App\Http\Controllers\productController;
+use App\Http\Controllers\reportController;
 use App\Http\Controllers\userController;
 use App\Http\Middleware\tokenVerficationMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -41,14 +42,12 @@ Route::controller(customerController::class)->group(function () {
     Route::get('/customers', 'customersPage')->middleware(tokenVerficationMiddleware::class);
 });
 
-
 // Invoice
 Route::controller(invoiceController::class)->group(function () {
-    Route::post('/create-invoice', 'createInvoice')->middleware(tokenVerficationMiddleware::class);
-    Route::get('/invoice-list', 'invoiceList')->middleware(tokenVerficationMiddleware::class);
-    Route::post('/invoice-details', 'invoiceDetails')->middleware(tokenVerficationMiddleware::class);
-    Route::post('/delete-invoice', 'deleteInvoice')->middleware(tokenVerficationMiddleware::class);
+    Route::get('/create-invoice', 'invoicePage')->middleware(tokenVerficationMiddleware::class);
+    Route::get('/sales', 'invoiceListPage')->middleware(tokenVerficationMiddleware::class);
 });
+
 
 //------------- API ROUTES ------------//
 
@@ -98,4 +97,17 @@ Route::controller(productController::class)->group(function () {
     Route::post('/delete-product', 'deleteProduct')->middleware(tokenVerficationMiddleware::class);
     Route::get('/product-list', 'productList')->middleware(tokenVerficationMiddleware::class);
     Route::get('/products/{id}', 'productById')->middleware(tokenVerficationMiddleware::class);
+});
+
+// Invoice
+Route::controller(invoiceController::class)->group(function () {
+    Route::post('/create-invoice', 'createInvoice')->middleware(tokenVerficationMiddleware::class);
+    Route::get('/invoice-list', 'invoiceList')->middleware(tokenVerficationMiddleware::class);
+    Route::post('/invoice-details', 'invoiceDetails')->middleware(tokenVerficationMiddleware::class);
+    Route::post('/delete-invoice', 'deleteInvoice')->middleware(tokenVerficationMiddleware::class);
+});
+
+// Report
+Route::controller(reportController::class)->group(function () {
+    Route::post('/sales-report', 'salesReport')->middleware(tokenVerficationMiddleware::class);
 });
