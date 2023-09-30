@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Customer;
+use App\Models\Invoice;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -36,9 +37,9 @@ class dashboardController extends Controller
         return Category::where('user_id', $userId)->count();
     }
 
-    // function totalSale(Request $request)
-    // {
-    //     $userId = $request->header('userId');
-    //     return Invoice::where('user_id', $userId)->count();
-    // }
+    function totalSale(Request $request)
+    {
+        $userId = $request->header('userId');
+        return Invoice::where('user_id', $userId)->count();
+    }
 }

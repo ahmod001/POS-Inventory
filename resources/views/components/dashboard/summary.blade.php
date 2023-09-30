@@ -98,13 +98,13 @@
             const totalProduct = await axios.get('/total-product');
             const totalCategory = await axios.get('/total-category');
             const totalCustomer = await axios.get('/total-customer');
-            // const totalSale = await axios.get('/total-sale');
+            const totalSale = await axios.get('/total-sale');
             hideLoader();
 
             DOM('total-customer', totalCustomer);
             DOM('total-product', totalProduct);
             DOM('total-category', totalCategory);
-            // DOM('total-sale', totalSale);
+            DOM('total-sale', totalSale);
 
         } catch (error) {
             hideLoader();
