@@ -1,67 +1,59 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+![image](https://github.com/ahmod001/POS-Inventory/assets/121039395/254d693d-cdea-456f-af44-b2c89fc05ecf)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Point Of Sale Inventory Application
 
-## About Laravel
+Welcome to the Point Of Sale (POS) Inventory Application! This Laravel-based inventory management system empowers users to efficiently oversee sales, customers, categories, and generate insightful reports. The application prioritizes security with features such as user authentication, account creation, and OTP-based password reset functionalities.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **User Authentication:** Seamlessly create accounts, log in securely, and reset passwords using OTP (One-Time Password) for enhanced security.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Customer Management:**
+  - Create, update, and delete customer records.
+  - Track and view customer information effortlessly.
 
-## Learning Laravel
+- **Sales Management:**
+  - Accurately track sales and effortlessly generate invoices.
+  - Print invoices for streamlined record-keeping.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Category Management:**
+  - Efficiently manage product categories with the ability to create, update, and delete.
+  - Easily view a comprehensive list of all categories.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **Statistics:**
+  - Gain valuable insights by viewing statistical information related to sales and inventory.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Reports:**
+  - Generate detailed sales reports.
+  - Download reports in PDF format for convenient offline reference.
 
-## Laravel Sponsors
+## Technology Stack
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- **Laravel:** Utilizing the Laravel PHP framework for a robust and scalable foundation.
 
-### Premium Partners
+- **MySQL:** Leveraging the efficiency of the MySQL database for seamless data storage and retrieval.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+- **Ajax Architecture:** Employing Ajax for asynchronous data exchange, enhancing the overall user experience.
 
-## Contributing
+## System Requirements
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Ensure that your development environment meets the following requirements:
 
-## Code of Conduct
+- PHP >= 7.4
+- Composer
+- MySQL
+- Node.js (for frontend assets compilation)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## API Documentation
 
-## Security Vulnerabilities
+Explore the API documentation for seamless integration and development:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- **Category API:** [Link](https://documenter.getpostman.com/view/29492560/2s9YJaYjJh)
+- **Customer API:** [Link](https://documenter.getpostman.com/view/29492560/2s9YJaYjJi)
+- **Invoice API:** [Link](https://documenter.getpostman.com/view/29492560/2s9YJaYjJj)
+- **Product API:** [Link](https://documenter.getpostman.com/view/29492560/2s9YJaYjJm)
+- **Report API:** [Link](https://documenter.getpostman.com/view/29492560/2s9YJaYjJn)
+- **User API:** [Link](https://documenter.getpostman.com/view/29492560/2s9YJaYjJo)
 
-## License
+Feel free to explore and integrate these APIs seamlessly into your applications.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# POS-Inventory
