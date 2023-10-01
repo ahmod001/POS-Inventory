@@ -10,15 +10,17 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class reportController extends Controller
 {
-    // function reportPage(){
-    //     return view('pages.auth.')
-    // }
+    function reportPage()
+    {
+        return view('pages.dashboard.sale-report');
+    }
 
     function salesReport(Request $request)
     {
         $userId = $request->header('userId');
-        $fromDate = date('y-m-d', strtotime($request->input('from')));
-        $toDate = date('y-m-d', strtotime($request->input('to')));
+
+        $fromDate = date('y-m-d', strtotime($request->from));
+        $toDate = date('y-m-d', strtotime($request->to));
 
         $invoice = Invoice::where('user_id', $userId)->whereDate('created_at', '>=', $fromDate)
             ->whereDate('created_at', '<=', $toDate);
@@ -39,7 +41,7 @@ class reportController extends Controller
             "list" => $invoiceList
         ];
 
-        $pdf = Pdf::loadView('pages.dashboard.sale-report', $data);
+        $pdf = Pdf::loadView('pages.report.report', $data);
         return $pdf->download('report.pdf');
     }
 }

@@ -49,6 +49,12 @@ Route::controller(invoiceController::class)->group(function () {
 });
 
 
+// Report
+Route::controller(reportController::class)->group(function () {
+    Route::get('/sales-report', 'reportPage')->middleware(tokenVerficationMiddleware::class);
+});
+
+
 //------------- API ROUTES ------------//
 
 // Dashboard
@@ -109,5 +115,5 @@ Route::controller(invoiceController::class)->group(function () {
 
 // Report
 Route::controller(reportController::class)->group(function () {
-    Route::post('/sales-report', 'salesReport')->middleware(tokenVerficationMiddleware::class);
+    Route::get('/sales-report/{from}/{to}', 'salesReport')->middleware(tokenVerficationMiddleware::class);
 });
